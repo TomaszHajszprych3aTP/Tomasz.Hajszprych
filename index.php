@@ -19,17 +19,15 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $login = $_POST['login'];
-        $userPassword = $_POST['haslo'];
-
+        
         $query = $connection->prepare("SELECT * FROM users WHERE logins = ?");
-        $query->bind_param("s", $login);
+        $query->bind_param("s", $_POST['login']);
         $query->execute();
         $result = $query->get_result();
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            if ($userPassword === $user['pass']) {
+            if ($_POST['haslo'] === $user['pass']) {
                 echo "Zalogowano pomyślnie";
             } else {
                 echo "Błędne hasło";
