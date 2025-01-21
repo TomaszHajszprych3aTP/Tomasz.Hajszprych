@@ -11,7 +11,7 @@
     $server = "localhost";
     $username = "admin";
     $password = "pass";
-    $database = "userDataBase";
+    $database = "logins";
 
     $connection = new mysqli($server, $username, $password, $database);
     if ($connection->connect_error) {
