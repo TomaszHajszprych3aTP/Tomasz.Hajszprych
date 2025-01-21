@@ -21,14 +21,13 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         $query = $connection->prepare("SELECT * FROM loginInfo WHERE log = ?");
-        $query->bind_param("s", $_POST['login']);
-        $query->execute();
+        $query->bind_param("s", $_POST['login']);  $query->execute();
         $result = $query->get_result();
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             if ($_POST['haslo'] === $user['pass']) {
-                echo "Zalogowano pomyślnie";
+                echo "Zalogowano";
             } else {
                 echo "Błędne hasło";
             }
