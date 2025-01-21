@@ -20,7 +20,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
-        $query = $connection->prepare("SELECT * FROM users WHERE logins = ?");
+        $query = $connection->prepare("SELECT * FROM loginInfo WHERE log = ?");
         $query->bind_param("s", $_POST['login']);
         $query->execute();
         $result = $query->get_result();
